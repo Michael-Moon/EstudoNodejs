@@ -1,0 +1,21 @@
+{
+    "type": "mysql",
+    "host": "localhost",
+    "port": 3306,
+    "username": "root",
+    "password": "my-secret-pw",
+    "database": "testeoni",  
+    "entities": [
+       "src/app/model/*.ts"
+    ],
+    "migrations": [
+       "src/database/migrations/*.ts"
+    ],
+    "subscribers": [
+       "src/subscriber/**/*.ts"
+    ],
+    "cli": {
+        "entitiesDir": "src/database/migrations/*.ts"
+    }
+
+ }
