@@ -26,7 +26,7 @@ export default function authMiddaleware(req: Request, res: Response, next:NextFu
         req.usuarioId = id;
 
         return next();
-    } catch {
-        return res.sendStatus(401);
+    } catch (error) {
+        return error.mensagaem;
     }
 }

@@ -1,7 +1,8 @@
 import {  Request, Response} from 'express';
-import { getRepository } from 'typeorm';
+import { getCustomRepository, getRepository } from 'typeorm';
 
 import Usuario from '../model/Usuario';
+import UsuarioRepository from '../repository/UsuarioRepository';
 
 class UsuarioController {
 
@@ -25,6 +26,23 @@ class UsuarioController {
         await repository.save(usuario);
         
         return res.json(usuario);
+    }
+
+    async getAll(req: Request, res: Response){
+
+        const user = await getRepository(Usuario).find();
+         user.forEach(element => {
+             delete element.password
+         });
+        return res.json(user);        
+    
+    }
+
+    async findByEmail(req: Request, res: Response){
+
+        const user = await getCustomRepository(UsuarioRepository).findByEmail(req.params.email);
+           
+        return res.json(user);
     }
 
 
